@@ -1,62 +1,83 @@
 package com.example.myapplication;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.myapplication.databinding.ConstraintLayoutBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final String TAG = this.getClass().getSimpleName();
-    Context context = MainActivity.this;
-    int duration = Toast.LENGTH_SHORT;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.i(TAG, "onCreate");
-        Toast.makeText(context, "onCreate", duration).show();
+        ConstraintLayoutBinding binding = ConstraintLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("Button", "Button was clicked");
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("from_edit_text", "I'm from 1st Activity");
+                //startActivity(intent);
+                launcher.launch(intent);
+            }
+
+            ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    Bundle text = result.getData().getExtras();
+                    binding.textView2.setText(text.getString("text"));
+                }
+            });
+        });
+        binding.button2.setText(R.string.for_edit_text);
+        binding.imageView4.setImageResource(R.drawable.soundcloud);
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
-        Toast.makeText(context, "onStart", duration).show();
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.w(TAG, "onStop");
-        Toast.makeText(context, "onStop", duration).show();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy");
-        Toast.makeText(context, "onDestroy", duration).show();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.w(TAG, "onPause");
-        Toast.makeText(context, "onPause", duration).show();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.v(TAG, "onResume");
-        Toast.makeText(context, "onResume", duration).show();
-    }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i(TAG, "onRestart");
-        Toast.makeText(context, "onRestart", duration).show();
+        /*TextView textView = (TextView)findViewById(R.id.textView2);
+        textView.setText(R.string.for_edit_text);
+        ImageView imageView = (ImageView)findViewById(R.id.imageView4);
+        imageView.setImageResource(R.drawable.soundcloud);*/
+
     }
 
+
+
+    /*public void Clicked(View view) {
+
+        Log.i("Button", "Button was clicked");
+        Intent intent = new Intent(this, MainActivity2.class);
+        intent.putExtra("from_edit_text", "I'm from 1st Activity");
+        startActivity(intent);
+
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                Bundle text = result.getData().getExtras();
+                TextView textView = findViewById(R.id.textView);
+                textView.setText(text.getInt("text"));
+            }
+        });
+    }*/
 }

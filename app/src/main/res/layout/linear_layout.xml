@@ -8,15 +8,15 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/agitation"
+        android:layout_height="121dp"
+        android:text="@string/artist_found"
         android:textSize="48sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/button_back" />
 
     <EditText
         android:id="@+id/editTextText"

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.databinding.ConstraintLayoutBinding;
+import com.example.myapplication.databinding.LinearLayoutBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         });
-        binding.button2.setText(R.string.for_edit_text);
-        binding.imageView4.setImageResource(R.drawable.soundcloud);
+        //binding.button2.setText(R.string.for_edit_text);
+        //binding.imageView4.setImageResource(R.drawable.soundcloud);
 
     }
 

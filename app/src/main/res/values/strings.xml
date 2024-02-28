@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="button_view">Click!</string>
-    <string name="agitation">Click on button below!</string>
-    <string name="for_edit_text">Enter here some</string>
+    <string name="app_name">Artist Photo Locator</string>
+    <string name="button_view">Find photo!</string>
+    <string name="button_back">Go back</string>
+    <string name="artist_found">That is your artist</string>
+    <string name="for_edit_text">Enter artist name</string>
 </resources>
